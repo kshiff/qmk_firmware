@@ -112,6 +112,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, MU_NEXT, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  _______, _______, _______,  _______,
     _______, AU_PREV, AU_NEXT, MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
+
+/* Function
+ * ,-----------------------------------------------------------------------------------.
+ * | Esc  | Prev | Play | Next |      |      |      |Pg Up |  Up  |Pg Dn |Prt Sc| Del  |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      | Mute | Vol- | Vol+ |      |      | Home | Left | Down |Right | End  |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      | Esc  |             | Esc  | Home |Pg Up |Pg Dn | End  |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_FUNCTION] = LAYOUT_planck_grid(
+  {KC_ESC , KC_MRWD, KC_MPLY, KC_MFFD, _______, _______, _______, KC_PGUP, KC_UP,   KC_PGDN, KC_PSCR, KC_DEL},
+  {_______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, KC_END , _______},
+  {KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12},
+  {_______, _______, _______, _______, KC_ESC , _______, _______, KC_ESC , KC_HOME, KC_PGUP, KC_PGDN, KC_END}
 )
 
 };
@@ -122,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #endif
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST, _FUNCTION);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
